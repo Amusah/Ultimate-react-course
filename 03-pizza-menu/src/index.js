@@ -56,11 +56,11 @@ function App() {
   );
 }
 
-function Header(){
+function Header() {
   return <h1>Fast React Pizza Co.</h1>;
 }
 
-function Menu(){
+function Menu() {
   return (
     <div>
       <h2>Our menu</h2>
@@ -71,11 +71,21 @@ function Menu(){
   );
 }
 
-function Footer(){
-  //return React.createElement("footer", null, "we're currently open!");
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+
+  // if (hour >= openHour && hour <= closeHour) alert("We're currently open!");
+  // else alert("Sorry we're closed");
+
   return (
     <footer>{new Date().toLocaleTimeString()} We're currently open</footer>
-  )
+  );
+
+  //return React.createElement("footer", null, "we're currently open!");
 }
 
 function Pizza() {
