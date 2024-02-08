@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  font-family: 'Roboto Mono', sans-serif;;
+  padding: 5rem;
+}
+
+.card{
+  width: 40rem;
+  /* height: 55rem; */
+  border: 0.2rem solid #000;
+}
+
+.profile{
+  width: 100%;
+}
+
+.card-body{
+  padding: 2rem 3rem;
+
+  .intro .name{
+    font-size: 4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  .intro .bio{
+    font-size: 1.7rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.skills{
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.skill-badge{
+  font-size: 1.5rem;
+  font-weight: 500;
+  /* background-color: #7F27FF; */
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+}
+
