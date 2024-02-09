@@ -72,6 +72,11 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
+
+      {/* <p>
+        Authentic Italian cuisine. & creative dishes to choose from.
+        All from your stone oven, all organic, all delicious.
+      </p> */}
       {/* conditional rendering with && operator */}
       {/* {pizzas > 0 && (
         <ul className="pizzas">
@@ -83,11 +88,17 @@ function Menu() {
 
       {/* conditional rendering with the ternary operator */}
       {pizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzaData.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        <>
+          <p>
+            Authentic Italian cuisine. & creative dishes to choose from. All
+            from your stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas">
+            {pizzaData.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>We're still working on our menu, Please come back later :)</p>
       )}
@@ -149,7 +160,10 @@ function Footer() {
 function OrderBtn({ closeHour, openHour }) {
   return (
     <div className="order">
-      <p>We're open from {openHour}:00 to {closeHour}:00, Come visit us or order online.</p>
+      <p>
+        We're open from {openHour}:00 to {closeHour}:00, Come visit us or order
+        online.
+      </p>
       <button className="btn">Order</button>
     </div>
   );
