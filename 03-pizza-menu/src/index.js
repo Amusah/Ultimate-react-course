@@ -72,28 +72,24 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-
-      {pizzas > 0 && (
+      {/* conditional rendering with && operator */}
+      {/* {pizzas > 0 && (
         <ul className="pizzas">
           {pizzaData.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
-      )}
+      )} */}
 
-      {/* <Pizza
-        name="Pizza Spinaci"
-        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="pizzas/spinaci.jpg"
-        price={10}
-      />
+      {/* conditional rendering with the ternary operator */}
 
-      <Pizza
-        name="Pizza Prosciutto"
-        ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
-        photoName="pizzas/prosciutto.jpg"
-        price={15}
-      /> */}
+      {pizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : <p>We're still working on our menu, Please come back later :)</p>}
     </main>
   );
 }
@@ -115,7 +111,7 @@ function Pizza(props) {
 function Footer() {
   const hour = new Date().getHours();
   const openHour = 6;
-  const closeHour = 12;
+  const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
 
@@ -124,12 +120,21 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
+      {/* conditional rendering with && operator */}
+      {/* {isOpen && (
         <div className="order">
           <p>We're open until {closeHour}:00, Come visit us or order online.</p>
           <button className="btn">Order</button>
         </div>
-      )}
+      )} */}
+
+      {/* conditional rendering with ternary operator */}
+      {isOpen ? (
+        <div className="order">
+          <p>We're open until {closeHour}:00, Come visit us or order online.</p>
+          <button className="btn">Order</button>
+        </div>
+      ) : <p>We're happy to welcome you between the hours of {openHour}:00 and {closeHour}:00</p>}
     </footer>
   );
 
