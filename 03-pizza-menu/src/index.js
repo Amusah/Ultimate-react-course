@@ -99,7 +99,7 @@ function Pizza(props) {
   console.log(props);
 
   if (props.pizzaObj.soldOut) return null;
-  
+
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -119,17 +119,7 @@ function Footer() {
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
 
-  // if (hour >= openHour && hour <= closeHour) alert("We're currently open!");
-  // else alert("Sorry we're closed");
-
   //conditional rendering with multiple returns (Guard rendering)
-  if (!isOpen)
-    return (
-      <p>
-        We're happy to welcome you between the hours of {openHour}:00 and{" "}
-        {closeHour}:00
-      </p>
-    );
 
   return (
     <footer className="footer">
@@ -143,10 +133,7 @@ function Footer() {
 
       {/* conditional rendering with ternary operator */}
       {isOpen ? (
-        <div className="order">
-          <p>We're open until {closeHour}:00, Come visit us or order online.</p>
-          <button className="btn">Order</button>
-        </div>
+        <OrderBtn close = {closeHour}/>
       ) : (
         <p>
           We're happy to welcome you between the hours of {openHour}:00 and{" "}
@@ -157,6 +144,15 @@ function Footer() {
   );
 
   //return React.createElement("footer", null, "we're currently open!");
+}
+
+function OrderBtn(props) {
+  return (
+    <div className="order">
+      <p>We're open until {props.close}:00, Come visit us or order online.</p>
+      <button className="btn">Order</button>
+    </div>
+  );
 }
 
 // React v18
