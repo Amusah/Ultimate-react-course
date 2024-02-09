@@ -82,20 +82,24 @@ function Menu() {
       )} */}
 
       {/* conditional rendering with the ternary operator */}
-
       {pizzas > 0 ? (
         <ul className="pizzas">
           {pizzaData.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
-      ) : <p>We're still working on our menu, Please come back later :)</p>}
+      ) : (
+        <p>We're still working on our menu, Please come back later :)</p>
+      )}
     </main>
   );
 }
 
 function Pizza(props) {
   console.log(props);
+
+  if (props.pizzaObj.soldOut) return null;
+  
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -118,6 +122,15 @@ function Footer() {
   // if (hour >= openHour && hour <= closeHour) alert("We're currently open!");
   // else alert("Sorry we're closed");
 
+  //conditional rendering with multiple returns (Guard rendering)
+  if (!isOpen)
+    return (
+      <p>
+        We're happy to welcome you between the hours of {openHour}:00 and{" "}
+        {closeHour}:00
+      </p>
+    );
+
   return (
     <footer className="footer">
       {/* conditional rendering with && operator */}
@@ -134,7 +147,12 @@ function Footer() {
           <p>We're open until {closeHour}:00, Come visit us or order online.</p>
           <button className="btn">Order</button>
         </div>
-      ) : <p>We're happy to welcome you between the hours of {openHour}:00 and {closeHour}:00</p>}
+      ) : (
+        <p>
+          We're happy to welcome you between the hours of {openHour}:00 and{" "}
+          {closeHour}:00
+        </p>
+      )}
     </footer>
   );
 
