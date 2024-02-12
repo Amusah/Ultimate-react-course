@@ -2,6 +2,34 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+const skills = [
+  {
+    skillName: "HTML+CSS",
+    level: "advanced",
+    color: "#9F70FD",
+  },
+  {
+    skillName: "JavaScript",
+    level: "advanced",
+    color: "#EFF396",
+  },
+  {
+    skillName: "SCSS",
+    level: "intermediate",
+    color: "#FFD0EC",
+  },
+  {
+    skillName: "Git and GitHub",
+    level: "intermediate",
+    color: "#EEEDEB",
+  },
+  {
+    skillName: "React",
+    level: "beginner",
+    color: "#7BD3EA",
+  },
+];
+
 function App() {
   return (
     <div className="card">
@@ -20,6 +48,10 @@ function CardBody() {
     <div className="card-body">
       <Intro />
       <div className="skills">
+        {skills.map(skill => <SkillSet skillObj={skill} key={skill.skillName} />)}
+      </div>
+
+      {/* <div className="skills">
         <SkillSet skillName="HTML+CSS" emoji="💪" bg="#9F70FD" />
         <SkillSet skillName="JavaScript" emoji="💪" bg="#EFF396" />
       </div>
@@ -29,8 +61,20 @@ function CardBody() {
       </div>
       <div className="skills">
         <SkillSet skillName="React" emoji="💪" bg="#7BD3EA" />
-      </div>
+      </div> */}
     </div>
+  );
+}
+
+function SkillSet({skillObj}) {
+  console.log(skillObj)
+  return (
+    <span style={{ backgroundColor: skillObj.color }} className="skill-badge">
+      {skillObj.skillName}
+      {skillObj.level === "beginner" && " 👶"}
+      {skillObj.level === "intermediate" && " 👍"}
+      {skillObj.level === "advanced" && " 💪"}
+    </span>
   );
 }
 
@@ -43,14 +87,6 @@ function Intro() {
         airplane hobbyist. I like to play the piano on zero days.
       </div>
     </div>
-  );
-}
-
-function SkillSet(props) {
-  return (
-    <span style={{backgroundColor: props.bg}} className="skill-badge">
-      {props.skillName} {props.emoji}
-    </span>
   );
 }
 
