@@ -44,7 +44,13 @@ function DateCounter(){
           <button onClick={() => incrementCount()}>+</button>
         </div>
         <p>
-          <span>{count === 0 ? "Today is " : count > 0 ? `${count} days from today is ` : `${Math.abs(count)} days ago was `}</span>
+          <span>
+            {count === 0
+              ? "Today is "
+              : count > 0
+              ? `${count} days from today is `
+              : `${Math.abs(count)} days ago was `}
+          </span>
           <span>{date.toDateString()}</span>
         </p>
       </div>
