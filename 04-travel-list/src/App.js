@@ -114,7 +114,7 @@ function Item({ item, onDeleteItems, onToggleItem }) {
     <li>
       <input
         type="checkbox"
-        checked={item.packed && true}
+        value={item.packed}
         onChange={() => {
           onToggleItem(item.id);
         }}
