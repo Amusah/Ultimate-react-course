@@ -92,14 +92,14 @@ function Task({ list, onDeleteTodo, onToggleTodo }) {
         {list.task}
       </p>
       <div>
-        {/* {!list.completed && (
+        {!list.completed && (
           <span className="icon" onClick={() => onToggleTodo(list.id)}>
             <img src={tick} alt="Check-icon" />
           </span>
-        )} */}
-        <span className="icon" onClick={() => onToggleTodo(list.id)}>
+        )}
+        {/* <span className="icon" onClick={() => onToggleTodo(list.id)}>
           <img src={tick} alt="Check-icon" />
-        </span>
+        </span> */}
 
         <span className="icon" onClick={() => onDeleteTodo(list.id)}>
           <img src={trash} alt="trash-icon" />
