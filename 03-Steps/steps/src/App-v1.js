@@ -7,15 +7,6 @@ const messages = [
 ];
 
 export default function App() {
-  return (
-    <div>
-      <Steps />
-      {/* <Steps /> */}
-    </div>
-  );
-}
-
-function Steps() {
   // const step = 1;
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
@@ -45,38 +36,21 @@ function Steps() {
           </p>
 
           <div className="buttons">
-            <Button
-              bgColor={"#7950f2"}
-              textColor={"#fff"}
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
               onClick={handlePrevious}
-              // text={"Previous"}
-              // emoji=""
             >
-              <span>👈</span> Previous{" "}
-            </Button>
-            <Button
-              bgColor={"#7950f2"}
-              textColor={"#fff"}
+              Previous
+            </button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
               onClick={handleNext}
-              // text={"Next"}
-              // emoji=""
             >
-            Next <span>👉</span>
-            </Button>
+              Next
+            </button>
           </div>
         </div>
       )}
     </>
-  );
-}
-
-function Button({ textColor, bgColor, onClick, children }) {
-  return (
-    <button
-      style={{ backgroundColor: bgColor, color: textColor }}
-      onClick={onClick}
-    >
-     {children}
-    </button>
   );
 }
