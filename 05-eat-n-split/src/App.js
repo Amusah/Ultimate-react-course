@@ -81,6 +81,7 @@ function App() {
         <FormSplitBill
           selectedFriend={selectedFriend}
           onSplitBill={handleSplitBill}
+          key={selectedFriend.id}
         />
       )}
     </div>
@@ -188,9 +189,9 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
     if (!bill || !paidByUser) return;
     onSplitBill(whoIsPaying === "user" ? paidByFriend : -paidByUser);
 
-    setBill('');
-    setPaidByUser('');
-    setWhoIsPaying('user');
+    setBill("");
+    setPaidByUser("");
+    setWhoIsPaying("user");
   };
 
   return (
