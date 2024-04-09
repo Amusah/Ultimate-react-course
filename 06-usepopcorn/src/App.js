@@ -57,12 +57,21 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const query = "sasdasfad";
+  const [query, setQuery] = useState("inception");
+  const tempQuery = "interstellar";
+
+  /*
+  useEffect(() => console.log("After initial render"), []);
+  useEffect(() => console.log("After every render"));
+  useEffect(() => console.log('D'), [query]);
+  console.log("During render");
+  */
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         setIsLoading(true);
+        setError('')
         const res = await fetch(
           `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
         );
@@ -70,25 +79,32 @@ export default function App() {
         if (!res.ok) throw new Error("Something went wrong");
 
         const data = await res.json();
-        console.log(data)
-        if(data.Response === 'False') throw new Error('Movie not found');
+        console.log(data);
+        if (data.Response === "False") throw new Error("Movie not found");
 
         setMovies(data.Search);
         console.log(data.Search);
-
       } catch (err) {
         console.error(err.message);
         setError(err.message);
-      } finally{
+      } finally {
         setIsLoading(false);
       }
     };
+    
+    if(query.length < 3){
+      setMovies([]);
+      setError('');
+      return;
+    }
+
     fetchMovies();
-  }, []);
+  }, [query]);
 
   return (
     <>
       <Navbar>
+        <SearchField query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </Navbar>
 
@@ -126,7 +142,6 @@ const Navbar = ({ children }) => {
   return (
     <nav className="nav-bar">
       <Logo />
-      <SearchField />
       {children}
     </nav>
   );
@@ -141,8 +156,7 @@ const Logo = () => {
   );
 };
 
-const SearchField = () => {
-  const [query, setQuery] = useState("");
+const SearchField = ({ query, setQuery }) => {
   return (
     <input
       className="search"
