@@ -331,6 +331,11 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     getMovieDetails();
   }, [selectedId]);
 
+  useEffect(() => {
+    if(!title) return;
+    document.title = `Movie | ${title}`
+  }, [title]);
+
   return (
     <div className="details">
       {isLoading ? (
@@ -456,7 +461,9 @@ const WatchedMovies = ({ movie, onDeletWatched }) => {
         <button
           className="btn-delete"
           onClick={() => onDeletWatched(movie.imdbID)}
-        >X</button>
+        >
+          X
+        </button>
       </div>
     </li>
   );
