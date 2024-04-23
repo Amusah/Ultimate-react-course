@@ -58,7 +58,7 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [query, setQuery] = useState("inception");
+  const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
   /*
@@ -98,15 +98,14 @@ export default function App() {
         if (!res.ok) throw new Error("Something went wrong");
 
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         if (data.Response === "False") throw new Error("Movie not found");
 
         setMovies(data.Search);
-        setError('');
-
+        setError("");
       } catch (err) {
-        console.error(err.message);
-        if(err.name !== 'AbortError'){
+        if (err.name !== "AbortError") {
+          console.error(err.message);
           setError(err.message);
         }
       } finally {
@@ -120,10 +119,11 @@ export default function App() {
       return;
     }
 
+    handleCloseMovie();
     fetchMovies();
     return () => {
       controller.abort();
-    }
+    };
   }, [query]);
 
   return (
@@ -324,6 +324,21 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   };
+
+  // Listening for escape key press event
+  useEffect(
+    function () {
+      const eventCallback = (e) => {
+        if (e.code === "Escape") onCloseMovie();
+      };
+      document.addEventListener("keydown", eventCallback);
+
+      return () => {
+        document.removeEventListener("keydown", eventCallback);
+      };
+    },
+    [onCloseMovie]
+  );
 
   useEffect(() => {
     const getMovieDetails = async () => {
