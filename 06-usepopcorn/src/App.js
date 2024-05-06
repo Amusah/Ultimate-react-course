@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import StarRating from "./StarRating";
 
-
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -250,9 +249,6 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     (movie) => movie.imdbID === selectedId
   )?.userRating;
 
-  /*eslint-disable*/
-  // if(imdbRating > 8) [isTop, setIsTop] = useState(true);
-
   // Destructure movie data
   const {
     Title: title,
@@ -267,6 +263,21 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     Genre: genre,
   } = movie;
 
+  /*eslint-disable*/
+  // if(imdbRating > 8) [isTop, setIsTop] = useState(true);
+
+  // const [isTop, setIsTop] = useState(imdbRating > 8);
+  // console.log(isTop);
+  // useEffect(() => {
+  //   setIsTop(imdbRating > 8)
+  // }, [imdbRating])
+
+  //Derived state instead
+  const isTop = imdbRating > 8;
+  console.log(isTop);
+
+  const [avgRating, setAvgRating] = useState(0);
+
   const handleAdd = () => {
     const newWatchedMovie = {
       imdbID: selectedId,
@@ -278,8 +289,10 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
       userRating,
     };
 
-    onAddWatched(newWatchedMovie);
-    onCloseMovie();
+    // onAddWatched(newWatchedMovie);
+    // setAvgRating(+imdbRating);
+    // setAvgRating(avgRating => (avgRating + userRating) / 2);
+    // onCloseMovie();
   };
 
   // Listening for escape key press event
@@ -341,6 +354,8 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
               </p>
             </div>
           </header>
+
+          {/* <p>{avgRating}</p> */}
 
           <section>
             <div className="rating">
