@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import StarRating from "./StarRating";
 import { useMovies } from "./useMovies";
+import { useKey } from "./useKey";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -132,19 +133,11 @@ const SearchField = ({ query, setQuery }) => {
   // with useRef
   const inputEl = useRef(null);
 
-  useEffect(() => {
-    const callback = (e) => {
-      if (document.activeElement === inputEl.current) return;
-      if (e.code === "Enter") {
-        inputEl.current.focus();
-        setQuery("");
-      }
-    };
-
-    document.addEventListener("keydown", callback);
-    return () => document.addEventListener("keydown", callback);
-    // inputEl.current.focus();
-  }, [setQuery]);
+  useKey('Enter', () => { // custome hook
+    if (document.activeElement === inputEl.current) return;
+    inputEl.current.focus();
+    setQuery("");
+  });
 
   return (
     <input
@@ -298,6 +291,8 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
   };
 
   // Listening for escape key press event
+  useKey('Escape', onCloseMovie);
+  /*
   useEffect(
     function () {
       const eventCallback = (e) => {
@@ -311,6 +306,8 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
     },
     [onCloseMovie]
   );
+
+  */
 
   useEffect(() => {
     const getMovieDetails = async () => {
