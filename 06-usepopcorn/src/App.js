@@ -291,23 +291,7 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
   };
 
   // Listening for escape key press event
-  useKey('Escape', onCloseMovie);
-  /*
-  useEffect(
-    function () {
-      const eventCallback = (e) => {
-        if (e.code === "Escape") onCloseMovie();
-      };
-      document.addEventListener("keydown", eventCallback);
-
-      return () => {
-        document.removeEventListener("keydown", eventCallback);
-      };
-    },
-    [onCloseMovie]
-  );
-
-  */
+  useKey('Escape', onCloseMovie); // custom hook
 
   useEffect(() => {
     const getMovieDetails = async () => {

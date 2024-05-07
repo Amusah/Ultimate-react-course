@@ -1,0 +1,23 @@
+*{
+  margin: 0 auto;
+  padding: 0;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  padding: 2rem;
+  font-size: 2rem;
+}
+
+button{
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+p{
+  padding: 1.5rem;
+}
