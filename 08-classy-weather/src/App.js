@@ -33,7 +33,7 @@ function formatDay(dateStr) {
 }
 
 function App() {
-  const [location, setLocation] = useState("Ghana");
+  const [location, setLocation] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [displayLocation, setDisplayLocation] = useState("");
   const [weather, setWeather] = useState({});
