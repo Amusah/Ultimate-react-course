@@ -8,6 +8,7 @@ import Question from "./Question";
 
 const initialState = {
   questions: [],
+  questionNumber: 0,
 
   // loading, error, ready, active, finished
   status: "loading",
@@ -34,7 +35,7 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ questions, status }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status, questionNumber }, dispatch] = useReducer(reducer, initialState);
   const numOfQuestions = questions.length; // derived state
 
   useEffect(function () {
@@ -42,10 +43,10 @@ function App() {
       try {
         const res = await fetch("http://localhost:8000/questions");
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         dispatch({ type: "dataReceived", payload: data });
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         dispatch({ type: "dataFailed" });
       }
     };
@@ -59,7 +60,7 @@ function App() {
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
         {status === "ready" && <StartScreen dispatch={dispatch} numOfQuestions={numOfQuestions} />}
-        {status === 'active' && <Question />}
+        {status === 'active' && <Question question={questions[questionNumber]}/>}
       </Main>
     </div>
   );
