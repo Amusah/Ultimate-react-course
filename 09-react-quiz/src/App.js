@@ -1,6 +1,9 @@
 import { useEffect, useReducer } from "react";
 import Header from "./Header";
 import Main from "./Main";
+import Loader from "./Loader";
+import Error from "./Error";
+import StartScreen from "./StartScreen";
 
 const initialState = {
   questions: [],
@@ -18,28 +21,40 @@ function reducer(state, action) {
 
     case "dataFailed":
       return { ...state, status: "error" };
+
+    // case 'loading':
+    //   return { ...state, status: 'loading'}
     default:
       throw new Error("Action unknown");
   }
 }
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status }, dispatch] = useReducer(reducer, initialState);
+  const numOfQuestions = questions.length; // derived state
 
   useEffect(function () {
-    // loading questions
-    fetch("http://localhost:9000/questions")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataReceived", payload: data }))
-      .catch((err) => dispatch({ type: "dataFailed" }));
+    const fetchQuestions = async () => {
+      try {
+        const res = await fetch("http://localhost:8000/questions");
+        const data = await res.json();
+        console.log(data);
+        dispatch({ type: "dataReceived", payload: data });
+      } catch (error) {
+        console.log(error);
+        dispatch({ type: "dataFailed" });
+      }
+    };
+    fetchQuestions();
   }, []);
 
   return (
     <div className="app">
       <Header />
       <Main>
-        <p>1/15</p>
-        <p>Question?</p>
+        {status === "loading" && <Loader />}
+        {status === "error" && <Error />}
+        {status === "ready" && <StartScreen numOfQuestions={numOfQuestions} />}
       </Main>
     </div>
   );
