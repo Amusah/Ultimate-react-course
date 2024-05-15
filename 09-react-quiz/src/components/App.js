@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from "react";
+
 import Header from "./Header";
 import Main from "./Main";
 import Loader from "./Loader";
@@ -9,6 +10,10 @@ import NextButton from "./NextButton";
 import Progress from "./Progress";
 import FinishedScreen from "./FinishedScreen";
 import StartButton from "./StartButton";
+import Footer from "./Footer";
+import Timer from "./Timer";
+
+const SECS_PER_QUESTION = 30;
 
 const initialState = {
   questions: [],
@@ -16,6 +21,7 @@ const initialState = {
   answer: null,
   points: 0,
   highscore: 0,
+  secondsRemaining: null,
 
   // loading, error, ready, active, finished
   status: "loading",
@@ -32,7 +38,7 @@ function reducer(state, action) {
       return { ...state, status: "error" };
 
     case "start":
-      return { ...state, status: "active" };
+      return { ...state, status: "active", secondsRemaining: state.questions.length * SECS_PER_QUESTION };
 
     case "newAnswer":
       const question = state.questions.at(state.index);
@@ -65,6 +71,15 @@ function reducer(state, action) {
         points: 0,
         // highscore: 0,
         status: "ready",
+        secondsRemaining: 10,
+      };
+
+    case "tick":
+      return {
+        ...state,
+        status: state.secondsRemaining === 0 ? "finished" : state.status,
+        secondsRemaining: state.secondsRemaining - 1,
+        // highscore: state.highscore
       };
 
     // case 'loading':
@@ -75,8 +90,10 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ questions, status, index, answer, points, highscore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { questions, status, index, answer, points, highscore, secondsRemaining },
+    dispatch,
+  ] = useReducer(reducer, initialState);
   const numOfQuestions = questions.length; // derived state
   const totalPoints = questions
     .map((question) => question.points)
@@ -121,6 +138,7 @@ function App() {
               dispatch={dispatch}
               answer={answer}
             />
+            <Timer secondsRemaining={secondsRemaining} disptach={dispatch} />
             <NextButton
               dispatch={dispatch}
               answer={answer}
@@ -137,7 +155,9 @@ function App() {
               totalPoints={totalPoints}
               highscore={highscore}
             />
-            <StartButton dispatch={dispatch} actionType={'restart'}>Restart quiz</StartButton>
+            <StartButton dispatch={dispatch} actionType={"restart"}>
+              Restart quiz
+            </StartButton>
           </>
         )}
       </Main>

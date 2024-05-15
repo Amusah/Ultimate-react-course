@@ -20,15 +20,15 @@ function NextButton({ dispatch, answer, index, numOfQuestions, status }) {
       </button>
     );
 
-  if (status === 'finished')
-    return (
-      <button
-        className="btn btn-ui"
-        onClick={() => dispatch({ type: "restart" })}
-      >
-        Restart
-      </button>
-    );  
+  // if (status === 'finished')
+  //   return (
+  //     <button
+  //       className="btn btn-ui"
+  //       onClick={() => dispatch({ type: "restart" })}
+  //     >
+  //       Restart
+  //     </button>
+  //   );  
 }
 
 export default NextButton;
