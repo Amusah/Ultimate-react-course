@@ -1,10 +1,10 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 
 const BASE_URL = "http://localhost:8000";
 
 const CitiesContext = createContext();
 
-function CitiesProvider({children}){
+function CitiesProvider({ children }) {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,11 +27,27 @@ function CitiesProvider({children}){
     fetchCities();
   }, []);
 
-  return <CitiesContext.Provider value={{
-    cities, isLoading
-  }}>
-    {children}
-  </CitiesContext.Provider>
+  return (
+    <CitiesContext.Provider
+      value={{
+        cities,
+        isLoading,
+      }}
+    >
+      {children}
+    </CitiesContext.Provider>
+  );
 }
 
-export { CitiesProvider };
+function useCities() {
+  const contextValue = useContext(CitiesContext);
+
+  // Assertion to ensure context is used in the right scope
+  if (contextValue === undefined)
+    throw new Error(
+      "Improper use of context: cities context was used in a scope outside the cities provider"
+    );
+  return contextValue;
+}
+
+export { CitiesProvider, useCities };
