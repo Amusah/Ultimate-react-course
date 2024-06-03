@@ -10,7 +10,7 @@ function Button({ children, onClick, type }) {
     navigate(-1);
   }
   return (
-    <button onClick={type === 'back' ? handleNavigateBack : undefined} className={`${styles.btn} ${styles[type]}`}>
+    <button onClick={type === 'back' ? handleNavigateBack : onClick} className={`${styles.btn} ${styles[type]}`}>
       {children}
     </button>
 
