@@ -10,7 +10,7 @@
         "lat": 38.727881642324164,
         "lng": -9.140900099907554
       },
-      "id": 73930385
+      "id": "73930385"
     },
     {
       "cityName": "Berlin",
@@ -22,7 +22,7 @@
         "lat": 52.53586782505711,
         "lng": 13.376933665713324
       },
-      "id": 98443197
+      "id": "98443197"
     },
     {
       "cityName": "Barcelona",
@@ -34,7 +34,79 @@
         "lat": 40.46635901755316,
         "lng": -3.7133789062500004
       },
-      "id": 17806755
+      "id": "17806755"
+    },
+    {
+      "id": "1e39",
+      "cityName": "Fundao",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2024-06-10T13:14:38.480Z",
+      "notes": "",
+      "position": {
+        "lat": 40.07807142745009,
+        "lng": -7.701416015625001
+      }
+    },
+    {
+      "id": "41a5",
+      "cityName": "Moka",
+      "country": "Mauritius",
+      "emoji": "🇲🇺",
+      "date": "2024-06-10T13:20:42.503Z",
+      "notes": "A beautiful city",
+      "position": {
+        "lat": -20.3034175184893,
+        "lng": 57.54638671875
+      }
+    },
+    {
+      "id": "7f8d",
+      "cityName": "Moka",
+      "country": "Mauritius",
+      "emoji": "🇲🇺",
+      "date": "2024-06-10T13:20:42.503Z",
+      "notes": "A beautiful city",
+      "position": {
+        "lat": -20.3034175184893,
+        "lng": 57.54638671875
+      }
+    },
+    {
+      "id": "1755",
+      "cityName": "Port Glaud",
+      "country": "Seychelles",
+      "emoji": "🇸🇨",
+      "date": "2024-06-10T13:23:25.574Z",
+      "notes": "My dream county",
+      "position": {
+        "lat": -4.632548146427767,
+        "lng": 55.43838500976563
+      }
+    },
+    {
+      "id": "56cd",
+      "cityName": "Funsi",
+      "country": "Ghana",
+      "emoji": "🇬🇭",
+      "date": "2024-06-10T13:46:07.930Z",
+      "notes": "",
+      "position": {
+        "lat": 9.882275493429953,
+        "lng": -1.9775390625000002
+      }
+    },
+    {
+      "id": "dcc2",
+      "cityName": "Pine Prairie",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2024-06-10T13:51:16.980Z",
+      "notes": "",
+      "position": {
+        "lat": 30.826780904779774,
+        "lng": -92.4609375
+      }
     }
   ]
 }
