@@ -1,18 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": "73930385"
-    },
-    {
       "cityName": "Berlin",
       "country": "Germany",
       "emoji": "🇩🇪",
@@ -25,16 +13,40 @@
       "id": "98443197"
     },
     {
-      "cityName": "Barcelona",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
+      "id": "d153",
+      "cityName": "Kunmadaras",
+      "country": "Hungary",
+      "emoji": "🇭🇺",
+      "date": "2024-06-12T12:50:45.386Z",
       "notes": "",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": "17806755"
+        "lat": 47.44294999517949,
+        "lng": 20.852050781250004
+      }
+    },
+    {
+      "id": "b722",
+      "cityName": "Zuzemberk",
+      "country": "Slovenia",
+      "emoji": "🇸🇮",
+      "date": "2024-06-12T13:00:51.156Z",
+      "notes": "",
+      "position": {
+        "lat": 45.85941212790755,
+        "lng": 14.908447265625002
+      }
+    },
+    {
+      "id": "91fc",
+      "cityName": "Salzburg",
+      "country": "Austria",
+      "emoji": "🇦🇹",
+      "date": "2024-06-12T13:01:32.969Z",
+      "notes": "Musik land 😊",
+      "position": {
+        "lat": 47.79839667295524,
+        "lng": 13.054504394531252
+      }
     }
   ]
 }
