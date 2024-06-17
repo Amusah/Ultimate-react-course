@@ -13,6 +13,7 @@ import CountryList from "./components/CountryList";
 import City from "./components/City";
 import Form from "./components/Form";
 import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   return (
@@ -26,7 +27,14 @@ function App() {
             <Route path="login" element={<Login />} />
 
             {/* nested routes */}
-            <Route path="app" element={<AppLayout />}>
+            <Route
+              path="app"
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route
                 index
                 // redirect mechanism
