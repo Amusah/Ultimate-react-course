@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   useReducer,
+  useCallback,
 } from "react";
 
 const BASE_URL = "http://localhost:8000";
@@ -31,11 +32,15 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         cities: [...state.cities, action.payload],
-        currentCity: action.payload
+        currentCity: action.payload,
       };
 
     case "city/deleted":
-      return { ...state, isLoading: false, cities: state.cities.filter(city => city.id !== action.payload)};
+      return {
+        ...state,
+        isLoading: false,
+        cities: state.cities.filter((city) => city.id !== action.payload),
+      };
 
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
@@ -79,24 +84,27 @@ function CitiesProvider({ children }) {
   }, []);
 
   // Fetching city info from our fake API
-  async function getCity(id) {
-    if(id === currentCity.id) return;
+  const getCity = useCallback(
+    async function getCity(id) {
+      if (id === currentCity.id) return;
 
-    try {
-      dispatch({ type: "loading" });
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-      // console.log(data);
-      // setCurrentCity(data);
-      dispatch({ type: "city/loaded", payload: data });
-      console.log(currentCity);
-    } catch (error) {
-      dispatch({
-        type: "rejected",
-        payload: `There was an error loading city...${error}`,
-      });
-    }
-  }
+      try {
+        dispatch({ type: "loading" });
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        // console.log(data);
+        // setCurrentCity(data);
+        dispatch({ type: "city/loaded", payload: data });
+        console.log(currentCity);
+      } catch (error) {
+        dispatch({
+          type: "rejected",
+          payload: `There was an error loading city...${error}`,
+        });
+      }
+    },
+    [currentCity.id]
+  );
 
   // Adding a new city to our fake API
   async function postCity(newCity) {
@@ -113,7 +121,10 @@ function CitiesProvider({ children }) {
       // setCities((cities) => [...cities, data]);
       dispatch({ type: "city/created", payload: data });
     } catch (error) {
-      dispatch({ type: 'rejected', payload: `There was an error adding new city...${error}`});
+      dispatch({
+        type: "rejected",
+        payload: `There was an error adding new city...${error}`,
+      });
     }
   }
 
@@ -125,9 +136,12 @@ function CitiesProvider({ children }) {
         method: "DELETE",
       });
       // setCities((cities) => cities.filter((city) => city.id !== id));
-      dispatch({ type: 'city/deleted', payload: id});
+      dispatch({ type: "city/deleted", payload: id });
     } catch (error) {
-      dispatch({ type: 'rejected', payload: `There was an error deleting city...${error}`});
+      dispatch({
+        type: "rejected",
+        payload: `There was an error deleting city...${error}`,
+      });
     }
   }
 

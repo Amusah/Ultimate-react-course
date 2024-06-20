@@ -26,7 +26,7 @@ function City() {
     setIsCurrentCityStale(false);
 
     return () => setIsCurrentCityStale(true);
-  }, [id]);
+  }, [id, getCity]);
   
   if(isCurrentCityStale || isLoading) return <Spinner />;
 
