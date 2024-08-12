@@ -132,3 +132,7 @@ button {
   background-color: transparent;
   font-size: 3.2rem;
 }
+
+#shadow-host-companion{
+  display: none;
+}
