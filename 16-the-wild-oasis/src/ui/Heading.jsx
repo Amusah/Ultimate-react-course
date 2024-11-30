@@ -8,7 +8,7 @@ const Heading = styled.h1`
     css`
       font-size: 50px;
       font-weight: 600;
-      background-color: yellow;
+      /* background-color: yellow; */
     `}
 
   ${(props) =>
